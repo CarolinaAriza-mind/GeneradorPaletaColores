@@ -1,23 +1,261 @@
-h1 {
-  color: yellow;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  display: grid;
-  place-items: initial;
+/* ==========================================
+   RESET Y VARIABLES
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-p {
-  color: rgb(255, 255, 255);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+:root {
+    /* Colores con buen contraste */
+    --primary-color: #667eea;
+    --primary-dark: #5568d3;
+    --text-color: #333;
+    --text-light: #666;
+    --bg-light: #f5f5f5;
+    --border-color: #ddd;
+    --success-color: #4CAF50;
+    --focus-color: #ff6b6b;
 }
 
-html {
-  background-color: black;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-.contenedor {
-  display: grid;
-  justify-items: center;
-  flex-direction: center;
-  text-align: center;
-  align-items: center;
+/* ==========================================
+   HEADER SEMÁNTICO
+   ========================================== */
+
+.header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    color: white;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* ==========================================
+   MAIN CONTENT
+   ========================================== */
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==========================================
+   CONTROLES CON ACCESIBILIDAD
+   ========================================== */
+
+.controls {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 180px;
+}
+
+/* LABELS con buen contraste */
+.control-label {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+/* SELECT con contraste y focus visible */
+.control-select {
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-select:hover {
+    border-color: var(--primary-color);
+}
+
+/* FOCUS VISIBLE para accesibilidad */
+.control-select:focus {
+    outline: 3px solid var(--focus-color);
+    outline-offset: 2px;
+    border-color: var(--primary-color);
+}
+
+/* BOTÓN con contraste adecuado */
+.btn-generate {
+    padding: 14px 40px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-generate:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-generate:active {
+    transform: translateY(0);
+}
+
+/* FOCUS VISIBLE en botón */
+.btn-generate:focus {
+    outline: 3px solid var(--focus-color);
+    outline-offset: 3px;
+}
+
+/* ==========================================
+   PALETA DE COLORES - RENDER DINÁMICO
+   ========================================== */
+
+.palette-container {
+    display: grid;
+    gap: 15px;
+    /* Grid se ajusta dinámicamente en JS */
+}
+
+/* ARTICLE semántico para cada color */
+.color-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.color-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* FOCUS VISIBLE en tarjetas */
+.color-card:focus {
+    outline: 3px solid var(--focus-color);
+    outline-offset: 3px;
+}
+
+.color-display {
+    flex: 1;
+    min-height: 120px;
+}
+
+.color-info {
+    padding: 15px;
+    background: white;
+    text-align: center;
+}
+
+.color-code {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.color-hint {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* ==========================================
+   MICROFEEDBACK - TOAST
+   ========================================== */
+
+.toast {
+    position: fixed;
+    top: -100px; /* Oculto inicialmente */
+    right: 20px;
+    background: var(--success-color);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    font-weight: 600;
+    transition: top 0.4s ease;
+    z-index: 1000;
+    min-width: 250px;
+    text-align: center;
+}
+
+.toast.show {
+    top: 20px; /* Visible */
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .control-group {
+        width: 100%;
+    }
+    
+    .btn-generate {
+        width: 100%;
+    }
 }

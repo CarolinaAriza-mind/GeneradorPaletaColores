@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Paletas de Colores</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- HEADER semántico -->
+    <header class="header">
+        <h1>Generador de Paletas de Colores</h1>
+        <p>Genera paletas aleatorias y copia los códigos con un click</p>
+    </header>
+
+    <!-- MAIN - contenido principal -->
+    <main class="main-content">
+        
+        <!-- SECTION de controles -->
+        <section class="controls" aria-label="Controles de generación">
+            
+            <!-- Control de tamaño con LABEL asociado -->
+            <div class="control-group">
+                <label for="paletteSize" class="control-label">
+                    Tamaño de paleta:
+                </label>
+                <select 
+                    id="paletteSize" 
+                    class="control-select"
+                    aria-label="Seleccionar cantidad de colores">
+                    <option value="6">6 colores</option>
+                    <option value="8" selected>8 colores</option>
+                    <option value="9">9 colores</option>
+                </select>
+            </div>
+
+            <!-- Control de formato con LABEL asociado -->
+            <div class="control-group">
+                <label for="colorFormat" class="control-label">
+                    Formato de color:
+                </label>
+                <select 
+                    id="colorFormat" 
+                    class="control-select"
+                    aria-label="Seleccionar formato de color">
+                    <option value="hex" selected>HEX</option>
+                    <option value="hsl">HSL</option>
+                </select>
+            </div>
+
+            <!-- Botón principal con aria-label -->
+            <button 
+                id="generateBtn" 
+                class="btn-generate"
+                aria-label="Generar nueva paleta de colores">
+                Generar Paleta
+            </button>
+        </section>
+
+        <!-- SECTION de paleta - se actualiza dinámicamente -->
+        <section 
+            id="paletteContainer" 
+            class="palette-container"
+            aria-label="Paleta de colores generada"
+            role="region"
+            aria-live="polite">
+            <!-- Los colores se generan dinámicamente aquí -->
+        </section>
+
+    </main>
+
+    <!-- FOOTER opcional -->
+    <footer class="footer">
+        <p>Click en cualquier color para copiar su código</p>
+    </footer>
+
+    <!-- Toast para microfeedback -->
+    <div 
+        id="toast" 
+        class="toast" 
+        role="alert" 
+        aria-live="assertive"
+        aria-atomic="true">
+    </div>
+
+    <script src="../js/index.js"></script>
+</body>
+</html>
